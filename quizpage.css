@@ -81,6 +81,38 @@ body, html {
 
 .progress-container {
   height: 8px;
+     .progress-bar {
+    height: 100%;
+    width: 5%;
+    background: linear-gradient(90deg, #7c3aed 0%, #5f72bd 100%);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+  }
+  
+  .quiz-info {
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-size: 0.95em;
+    font-weight: 500;
+  }
+  
+  #question-container {
+    margin-bottom: 30px;
+  }
+  
+  #question-text {
+    color: #333;
+    font-size: 1.3em;
+    margin-bottom: 20px;
+  }
+  
+  .options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
   background: #f1e9fc;
   border-radius: 10px;
   margin-bottom: 15px;
