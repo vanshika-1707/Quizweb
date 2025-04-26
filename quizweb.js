@@ -85,3 +85,68 @@ function showRandomQuiz() {
   randomQuestion.options.forEach((option, index) => {
     const button = document.createElement('button');
     button.textContent = option;
+button.addEventListener('click', () => {
+      if (index === randomQuestion.correct) {
+        button.classList.add('correct');
+        setTimeout(() => floatingQuiz.classList.remove('active'), 1000);
+      } else {
+        button.classList.add('incorrect');
+      }
+    });
+    optionsDiv.appendChild(button);
+  });
+  
+  floatingQuiz.classList.add('active');
+}
+
+// Show floating quiz every 30 seconds
+setInterval(showRandomQuiz, 30000);
+
+// Close quiz button
+floatingQuiz.querySelector('.close-quiz').addEventListener('click', () => {
+  floatingQuiz.classList.remove('active');
+});
+
+// Active Users Counter
+const userCounter = document.createElement('div');
+userCounter.className = 'user-counter';
+userCounter.innerHTML = '<span class="counter-number">0</span> users online';
+document.querySelector('.hero-left').appendChild(userCounter);
+
+let currentUsers = 0;
+function updateUserCounter() {
+  currentUsers += Math.floor(Math.random() * 3) - 1;
+  currentUsers = Math.max(0, currentUsers);
+  userCounter.querySelector('.counter-number').textContent = currentUsers;
+  setTimeout(updateUserCounter, 3000);
+}
+updateUserCounter();
+
+// Smooth Scroll for Navigation
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+
+// Hero Illustration Hover Effect
+const heroIllustration = document.querySelector('.hero-illustration');
+heroIllustration.addEventListener('mouseover', () => {
+  heroIllustration.style.transform = 'scale(1.05) rotate(2deg)';
+});
+heroIllustration.addEventListener('mouseout', () => {
+  heroIllustration.style.transform = 'scale(1) rotate(0deg)';
+});
+
+// Dynamic Background Animation
+const animatedBg = document.querySelector('.animated-bg');
+function updateBackground() {
+  const hue = (Date.now() / 10000) % 360;
+  animatedBg.style.background = `linear-gradient(${hue}deg, #4f46e5, #7c3aed)`;
+  requestAnimationFrame(updateBackground);
+}
+updateBackground();
