@@ -45,3 +45,43 @@ miniQuiz.querySelectorAll('button').forEach(btn => {
     }
   });
 });
+const floatingQuiz = document.createElement('div');
+floatingQuiz.className = 'floating-quiz';
+floatingQuiz.innerHTML = `
+  <div class="floating-quiz-content">
+    <h3>Quick Quiz</h3>
+    <p class="floating-question"></p>
+    <div class="floating-options"></div>
+    <button class="close-quiz">×</button>
+  </div>
+`;
+document.body.appendChild(floatingQuiz);
+
+const quizQuestions = [
+  {
+    question: "What is the capital of France?",
+    options: ["London", "Berlin", "Paris", "Madrid"],
+    correct: 2
+  },
+  {
+    question: "Which planet is known as the Red Planet?",
+    options: ["Venus", "Mars", "Jupiter", "Saturn"],
+    correct: 1
+  },
+  {
+    question: "Who painted the Mona Lisa?",
+    options: ["Van Gogh", "Picasso", "Da Vinci", "Michelangelo"],
+    correct: 2
+  }
+];
+
+function showRandomQuiz() {
+  const randomQuestion = quizQuestions[Math.floor(Math.random() * quizQuestions.length)];
+  floatingQuiz.querySelector('.floating-question').textContent = randomQuestion.question;
+  
+  const optionsDiv = floatingQuiz.querySelector('.floating-options');
+  optionsDiv.innerHTML = '';
+  
+  randomQuestion.options.forEach((option, index) => {
+    const button = document.createElement('button');
+    button.textContent = option;
