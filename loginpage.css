@@ -194,3 +194,175 @@
     color: #6025c0;
     text-decoration: underline;
   }
+ .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .forgot-link {
+    color: #7c3aed;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+  }
+  
+  .forgot-link:hover {
+    color: #6025c0;
+    text-decoration: underline;
+  }
+  
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border 0.3s, box-shadow 0.3s;
+  }
+  
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
+    outline: none;
+  }
+  
+  .remember-me {
+    display: flex;
+    align-items: center;
+  }
+  
+  .remember-me input {
+    margin-right: 0.5rem;
+  }
+  
+  .error-message {
+    color: #e53e3e;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    display: block;
+    height: 1rem;
+  }
+  
+  .login-btn {
+    width: 100%;
+    background: linear-gradient(to right, #7c3aed, #5b21b6);
+    color: white;
+    border: none;
+    padding: 0.9rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .login-btn:hover {
+    background: linear-gradient(to right, #6025c0, #4a1d96);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(123, 58, 237, 0.3);
+  }
+  
+  .login-btn:active {
+    transform: translateY(0);
+  }
+  
+  .or-divider {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+    color: #777;
+  }
+  
+  .or-divider::before,
+  .or-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: #ddd;
+  }
+  
+  .or-divider span {
+    padding: 0 1rem;
+  }
+  
+  .social-login {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .google-btn, .facebook-btn {
+    flex: 1;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+  }
+  
+  .google-btn:hover {
+    background-color: #f8f8f8;
+    border-color: #ea4335;
+    color: #ea4335;
+  }
+  
+  .facebook-btn:hover {
+    background-color: #f8f8f8;
+    border-color: #3b5998;
+    color: #3b5998;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .login-card {
+      flex-direction: column;
+    }
+    
+    .login-right {
+      padding: 1rem;
+    }
+    
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: white;
+      padding: 1rem;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-links.active {
+      display: flex;
+    }
+    
+    .nav-links li {
+      margin: 0.5rem 0;
+    }
+    
+    .dropdown-content {
+      position: static;
+      box-shadow: none;
+      display: none;
+      padding-left: 1rem;
+    }
+    
+    .dropdown.active .dropdown-content {
+      display: block;
+    }
+    
+    .hamburger {
+      display: flex;
+    }
+  }
