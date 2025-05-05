@@ -102,5 +102,22 @@ document.addEventListener('DOMContentLoaded', function() {
         answer: 1
       }
     ];
+    // DOM elements
+    const quizContainer = document.getElementById('quiz-container');
+    const resultsContainer = document.getElementById('results-container');
+    const progressBar = document.getElementById('progress-bar');
+    const questionNumber = document.getElementById('question-number');
+    const questionText = document.getElementById('question-text');
+    const optionsContainer = document.getElementById('options-container');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const submitBtn = document.getElementById('submit-btn');
+    const scoreValue = document.getElementById('score-value');
+    const scoreMessage = document.getElementById('score-message');
+    const reviewContainer = document.getElementById('review-container');
+    const retryBtn = document.getElementById('retry-btn');
+    const homeBtn = document.getElementById('home-btn');
+    const timer = document.getElementById('timer');
   
+    // Quiz state
   
