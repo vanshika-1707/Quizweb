@@ -120,4 +120,63 @@ document.addEventListener('DOMContentLoaded', function() {
     const timer = document.getElementById('timer');
   
     // Quiz state
+    let currentQuestionIndex = 0;
+    let userAnswers = new Array(quizQuestions.length).fill(null);
+    let startTime;
+    let timerInterval;
   
+    // Initialize quiz
+    function initQuiz() {
+      startTime = new Date();
+      timerInterval = setInterval(updateTimer, 1000);
+      showQuestion(currentQuestionIndex);
+      updateProgressBar();
+      
+      // Add event listeners
+      prevBtn.addEventListener('click', goToPreviousQuestion);
+      nextBtn.addEventListener('click', goToNextQuestion);
+      submitBtn.addEventListener('click', submitQuiz);
+      retryBtn.addEventListener('click', retryQuiz);
+      homeBtn.addEventListener('click', () => window.location.href = 'index.html');
+    }
+  
+    // Show current question
+    function showQuestion(index) {
+      const question = quizQuestions[index];
+      questionText.textContent = question.question;
+      questionNumber.textContent = Question ${index + 1} of ${quizQuestions.length};
+      
+      // Clear options
+      optionsContainer.innerHTML = '';
+      
+      // Add options
+      question.options.forEach((option, i) => {
+        const optionEl = document.createElement('div');
+        optionEl.classList.add('option');
+        optionEl.textContent = option;
+        
+        if (userAnswers[index] === i) {
+          optionEl.classList.add('selected');
+        }
+        
+        optionEl.addEventListener('click', () => {
+          selectOption(index, i);
+        });
+        
+        optionsContainer.appendChild(optionEl);
+      });
+      
+      // Update navigation buttons
+      prevBtn.disabled = index === 0;
+      
+      if (index === quizQuestions.length - 1) {
+        nextBtn.style.display = 'none';
+        submitBtn.style.display = 'block';
+      } else {
+        nextBtn.style.display = 'block';
+        submitBtn.style.display = 'none';
+      }
+    }
+  
+    // Select an option
+   
