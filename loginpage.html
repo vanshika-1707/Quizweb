@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Quiz Website</title>
+  <link rel="stylesheet" href="./home.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo">QuizMaster</div>
+    <ul class="nav-links">
+      <li><a href="./landing.html" class="active">Home</a></li>
+      <li><a href="./home.html" class="active">Login</a></li>
+      <li><a href="./aboutus.html">About Us</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropbtn">Quiz <i class="fa fa-caret-down"></i></a>
+        <div class="dropdown-content">
+          <a href="#">Start Quiz</a>
+          <a href="./createquiz.html">Create Quiz</a>
+          <a href="#">My Quizzes</a>
+        </div>
+      </li>
+      
+      <li><a href="./feedback.html">Feedback</a></li>
+      <li><a href="./signup.html">Sign Up</a></li>
+    </ul>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+<div class="main-container">
+    <div class="login-card">
+      <div class="login-left">
+        <h2>Login</h2>
+        
+        <form id="loginForm" novalidate>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="you@example.com" required>
+            <span class="error-message" id="emailError"></span>
+          </div>
+          <div class="form-group">
+            <label for="password">
+              Password
+              <a href="#" class="forgot-link">Forgot Password?</a>
+            </label>
+            <input type="password" id="password" placeholder="Enter 6 character or more" required>
+            <span class="error-message" id="passwordError"></span>
+          </div>
+          <div class="form-group remember-me">
+            <input type="checkbox" id="remember">
+            <label for="remember">Remember me</label>
+          </div>
+          <button type="submit" class="login-btn">LOGIN</button>
+          
+          
+        </form>
+      </div>
+      <div class="login-right">
+        <img src="./loginpage.avif" alt="Login Illustration">
+      </div>
+    </div>
+  </div>
+
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="./home.js"></script>
+</body>
+</html>
