@@ -1,0 +1,348 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f7f6fd;
+  }
+  
+  .main-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+  }
+  
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 0 32px;
+    height: 66px;
+    box-shadow: 0 2px 12px rgba(80, 80, 160, 0.06);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+  
+  .nav-logo {
+    font-size: 1.7em;
+    font-weight: bold;
+    color: #7c3aed;
+    letter-spacing: 1px;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 22px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-links li {
+    display: inline;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #444;
+    font-size: 1.08em;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 5px;
+    transition: background 0.18s, color 0.18s;
+  }
+  
+  .nav-links a.active,
+  .nav-links a:hover {
+    background: #7c3aed;
+    color: #fff;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+  }
+  
+  .dropdown-content a {
+    color: #444;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .quiz-creator-card {
+    display: flex;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(80, 80, 160, 0.13);
+    overflow: hidden;
+    max-width: 1100px;
+    width: 95%;
+    margin: 80px auto 20px;
+  }
+  
+  .creator-left {
+    flex: 2;
+    padding: 40px 36px;
+    overflow-y: auto;
+    max-height: 80vh;
+  }
+  
+  .creator-left h2 {
+    margin: 0 0 8px 0;
+    font-size: 2.1em;
+    font-weight: 700;
+    color: #2d1457;
+  }
+  
+  .subtitle {
+    margin-bottom: 28px;
+    color: #888;
+    font-size: 1em;
+  }
+  
+  .form-group {
+    margin-bottom: 18px;
+    position: relative;
+  }
+  
+  label {
+    display: block;
+    font-size: 1em;
+    color: #222;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  
+  input[type="text"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1em;
+    outline: none;
+    transition: border 0.2s;
+    box-sizing: border-box;
+  }
+  
+  input[type="text"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1.5px solid #7c3aed;
+  }
+  
+  .question-card {
+    background: #f8f5ff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 24px;
+    border-left: 4px solid #7c3aed;
+  }
+  
+  .question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .question-header h3 {
+    margin: 0;
+    color: #7c3aed;
+  }
+  
+  .remove-question-btn {
+    background: #fee2e2;
+    color: #ef4444;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+  
+  .remove-question-btn:hover {
+    background: #ef4444;
+    color: white;
+  }
+  
+  .options-container {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  
+  .option-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .correct-option {
+    margin: 0;
+    width: 18px;
+    height: 18px;
+    accent-color: #7c3aed;
+  }
+  
+  .option-text {
+    flex-grow: 1;
+  }
+  
+  .hint-text {
+    font-size: 0.85em;
+    color: #888;
+    margin-top: 10px;
+    text-align: right;
+  }
+  
+  .add-question-btn {
+    width: 100%;
+    background: #e9e3f8;
+    color: #7c3aed;
+    border: 1px dashed #b4a7d6;
+    padding: 13px 0;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 20px 0;
+    transition: background 0.2s;
+  }
+  
+  .add-question-btn:hover {
+    background: #d6cdf7;
+  }
+  
+  .submit-section {
+    margin-top: 30px;
+  }
+  
+  .create-quiz-btn {
+    width: 100%;
+    background: linear-gradient(90deg, #7c3aed 0%, #5f72bd 100%);
+    color: #fff;
+    border: none;
+    padding: 13px 0;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .create-quiz-btn:hover {
+    background: linear-gradient(90deg, #6d2ded 0%, #4f62ad 100%);
+  }
+  
+  .creator-right {
+    flex: 1;
+    background: #f9f8ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+  }
+  
+  .creator-right img {
+    max-width: 90%;
+    height: auto;
+    display: block;
+    margin-bottom: 30px;
+  }
+  
+  .preview-box {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    width: 80%;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.1);
+  }
+  
+  .preview-box h3 {
+    margin-top: 0;
+    color: #7c3aed;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  #previewContent p {
+    margin: 8px 0;
+    font-size: 0.95em;
+  }
+  
+  #previewContent span {
+    font-weight: 600;
+    color: #2d1457;
+  }
+  
+  @media (max-width: 900px) {
+    .quiz-creator-card {
+      flex-direction: column;
+    }
+    
+    .creator-right {
+      padding: 20px;
+    }
+    
+    .options-container {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .creator-left {
+      padding: 30px 15px;
+    }
+    
+    .navbar {
+      padding: 0 15px;
+    }
+    
+    .nav-links {
+      display: none;
+    }
+    
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+    
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: #444;
+      border-radius: 3px;
+    }
+  }
