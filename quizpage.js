@@ -180,3 +180,25 @@ document.addEventListener('DOMContentLoaded', function() {
   
     // Select an option
    
+// Retry quiz
+    function retryQuiz() {
+      currentQuestionIndex = 0;
+      userAnswers = new Array(quizQuestions.length).fill(null);
+      
+      // Reset timer
+      startTime = new Date();
+      timerInterval = setInterval(updateTimer, 1000);
+      
+      // Show quiz, hide results
+      quizContainer.style.display = 'block';
+      resultsContainer.style.display = 'none';
+      
+      // Show first question
+      showQuestion(currentQuestionIndex);
+      updateProgressBar();
+    }
+  
+    // Initialize the quiz
+    initQuiz();
+  });
+  
