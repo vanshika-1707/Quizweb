@@ -102,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
         answer: 1
       }
     ];
+  
     // DOM elements
     const quizContainer = document.getElementById('quiz-container');
     const resultsContainer = document.getElementById('results-container');
@@ -179,8 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   
     // Select an option
-   
- function selectOption(questionIndex, optionIndex) {
+    function selectOption(questionIndex, optionIndex) {
       userAnswers[questionIndex] = optionIndex;
       
       // Update UI
@@ -299,4 +299,24 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
   
-    
+    // Retry quiz
+    function retryQuiz() {
+      currentQuestionIndex = 0;
+      userAnswers = new Array(quizQuestions.length).fill(null);
+      
+      // Reset timer
+      startTime = new Date();
+      timerInterval = setInterval(updateTimer, 1000);
+      
+      // Show quiz, hide results
+      quizContainer.style.display = 'block';
+      resultsContainer.style.display = 'none';
+      
+      // Show first question
+      showQuestion(currentQuestionIndex);
+      updateProgressBar();
+    }
+  
+    // Initialize the quiz
+    initQuiz();
+  });
