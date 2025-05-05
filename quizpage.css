@@ -117,4 +117,108 @@ body, html {
   border-radius: 10px;
   margin-bottom: 15px;
 }
+.quiz-actions button {
+    border: none;
+    border-radius: 6px;
+    padding: 7px 16px;
+    font-size: 0.98em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.18s;
+  }
+  
+  .quiz-actions .view-btn {
+    background: #fff;
+    color: #7c3aed;
+    border: 1.5px solid #7c3aed;
+  }
+  
+  .quiz-actions .view-btn:hover {
+    background: #e1d7f9;
+  }
+  
+  .quiz-actions .edit-btn {
+    background: #f5f5f5;
+    color: #444;
+    border: 1.5px solid #d1d5db;
+  }
+  
+  .quiz-actions .edit-btn:hover {
+    background: #e9e3f8;
+    color: #7c3aed;
+  }
+  
+  .quiz-actions .delete-btn {
+    background: #fee2e2;
+    color: #ef4444;
+    border: 1.5px solid #ef4444;
+  }
+  
+  .quiz-actions .delete-btn:hover {
+    background: #ef4444;
+    color: #fff;
+  }
+  
+  .no-quizzes {
+    text-align: center;
+    margin-top: 60px;
+    color: #7c3aed;
+  }
+  
+  .no-quizzes img {
+    width: 180px;
+    margin-bottom: 18px;
+    opacity: 0.8;
+  }
 
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropbtn {
+    cursor: pointer;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+    border-radius: 6px;
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: #444;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-radius: 6px;
+    transition: background 0.18s;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f1e9fc;
+    color: #7c3aed;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .create-link {
+    color: #7c3aed;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 900px) {
+    .quiz-list {
+      grid-template-columns: 1fr;
+    }
+    .my-quizzes-container {
+      padding: 20px 6px 30px 6px;
+    }
+  }
