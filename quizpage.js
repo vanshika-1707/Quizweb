@@ -103,4 +103,220 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     ];
   
+    // DOM elements
+    const quizContainer = document.getElementById('quiz-container');
+    const resultsContainer = document.getElementById('results-container');
+    const progressBar = document.getElementById('progress-bar');
+    const questionNumber = document.getElementById('question-number');
+    const questionText = document.getElementById('question-text');
+    const optionsContainer = document.getElementById('options-container');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const submitBtn = document.getElementById('submit-btn');
+    const scoreValue = document.getElementById('score-value');
+    const scoreMessage = document.getElementById('score-message');
+    const reviewContainer = document.getElementById('review-container');
+    const retryBtn = document.getElementById('retry-btn');
+    const homeBtn = document.getElementById('home-btn');
+    const timer = document.getElementById('timer');
   
+    // Quiz state
+    let currentQuestionIndex = 0;
+    let userAnswers = new Array(quizQuestions.length).fill(null);
+    let startTime;
+    let timerInterval;
+  
+    // Initialize quiz
+    function initQuiz() {
+      startTime = new Date();
+      timerInterval = setInterval(updateTimer, 1000);
+      showQuestion(currentQuestionIndex);
+      updateProgressBar();
+      
+      // Add event listeners
+      prevBtn.addEventListener('click', goToPreviousQuestion);
+      nextBtn.addEventListener('click', goToNextQuestion);
+      submitBtn.addEventListener('click', submitQuiz);
+      retryBtn.addEventListener('click', retryQuiz);
+      homeBtn.addEventListener('click', () => window.location.href = 'index.html');
+    }
+  
+    // Show current question
+    function showQuestion(index) {
+      const question = quizQuestions[index];
+      questionText.textContent = question.question;
+      questionNumber.textContent = Question ${index + 1} of ${quizQuestions.length};
+      
+      // Clear options
+      optionsContainer.innerHTML = '';
+      
+      // Add options
+      question.options.forEach((option, i) => {
+        const optionEl = document.createElement('div');
+        optionEl.classList.add('option');
+        optionEl.textContent = option;
+        
+        if (userAnswers[index] === i) {
+          optionEl.classList.add('selected');
+        }
+        
+        optionEl.addEventListener('click', () => {
+          selectOption(index, i);
+        });
+        
+        optionsContainer.appendChild(optionEl);
+      });
+      
+      // Update navigation buttons
+      prevBtn.disabled = index === 0;
+      
+      if (index === quizQuestions.length - 1) {
+        nextBtn.style.display = 'none';
+        submitBtn.style.display = 'block';
+      } else {
+        nextBtn.style.display = 'block';
+        submitBtn.style.display = 'none';
+      }
+    }
+  
+    // Select an option
+    function selectOption(questionIndex, optionIndex) {
+      userAnswers[questionIndex] = optionIndex;
+      
+      // Update UI
+      const options = optionsContainer.querySelectorAll('.option');
+      options.forEach(option => option.classList.remove('selected'));
+      options[optionIndex].classList.add('selected');
+    }
+  
+    // Go to previous question
+    function goToPreviousQuestion() {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        showQuestion(currentQuestionIndex);
+        updateProgressBar();
+      }
+    }
+  
+    // Go to next question
+    function goToNextQuestion() {
+      if (currentQuestionIndex < quizQuestions.length - 1) {
+        currentQuestionIndex++;
+        showQuestion(currentQuestionIndex);
+        updateProgressBar();
+      }
+    }
+  
+    // Update progress bar
+    function updateProgressBar() {
+      const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
+      progressBar.style.width = ${progress}%;
+    }
+  
+    // Update timer
+    function updateTimer() {
+      const now = new Date();
+      const elapsedTime = Math.floor((now - startTime) / 1000); // in seconds
+      
+      const minutes = Math.floor(elapsedTime / 60);
+      const seconds = elapsedTime % 60;
+      
+      timer.textContent = ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')};
+    }
+  
+    // Calculate score
+    function calculateScore() {
+      let score = 0;
+      
+      userAnswers.forEach((answer, index) => {
+        if (answer === quizQuestions[index].answer) {
+          score++;
+        }
+      });
+      
+      return score;
+    }
+  
+    // Submit quiz
+    function submitQuiz() {
+      clearInterval(timerInterval);
+      
+      const score = calculateScore();
+      scoreValue.textContent = score;
+      scoreMessage.textContent = You scored ${score} out of ${quizQuestions.length};
+      
+      // Generate review
+      generateReview();
+      
+      // Hide quiz, show results
+      quizContainer.style.display = 'none';
+      resultsContainer.style.display = 'block';
+    }
+  
+    // Generate review of all questions and answers
+    function generateReview() {
+      reviewContainer.innerHTML = '';
+      
+      quizQuestions.forEach((question, index) => {
+        const reviewItem = document.createElement('div');
+        reviewItem.classList.add('review-item');
+        
+        // Question
+        const reviewQuestion = document.createElement('div');
+        reviewQuestion.classList.add('review-question');
+        reviewQuestion.textContent = ${index + 1}. ${question.question};
+        reviewItem.appendChild(reviewQuestion);
+        
+        // Answers
+        question.options.forEach((option, i) => {
+          const reviewAnswer = document.createElement('div');
+          reviewAnswer.classList.add('review-answer');
+          
+          // Correct answer
+          if (i === question.answer) {
+            reviewAnswer.classList.add('correct');
+            reviewAnswer.textContent = ✓ ${option};
+          } 
+          // Incorrect selected answer
+          else if (i === userAnswers[index] && i !== question.answer) {
+            reviewAnswer.classList.add('incorrect');
+            reviewAnswer.textContent = ✗ ${option};
+          }
+          // Other options
+          else {
+            reviewAnswer.textContent = option;
+          }
+          
+          // Highlight user's selection
+          if (i === userAnswers[index]) {
+            reviewAnswer.classList.add('user-selected');
+          }
+          
+          reviewItem.appendChild(reviewAnswer);
+        });
+        
+        reviewContainer.appendChild(reviewItem);
+      });
+    }
+  
+    // Retry quiz
+    function retryQuiz() {
+      currentQuestionIndex = 0;
+      userAnswers = new Array(quizQuestions.length).fill(null);
+      
+      // Reset timer
+      startTime = new Date();
+      timerInterval = setInterval(updateTimer, 1000);
+      
+      // Show quiz, hide results
+      quizContainer.style.display = 'block';
+      resultsContainer.style.display = 'none';
+      
+      // Show first question
+      showQuestion(currentQuestionIndex);
+      updateProgressBar();
+    }
+  
+    // Initialize the quiz
+    initQuiz();
+  });
