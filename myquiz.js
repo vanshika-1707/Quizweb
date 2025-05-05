@@ -28,5 +28,40 @@ const quizzes = [
       progress: 0,
     }
   ];
+  function renderQuizzes() {
+    const quizList = document.getElementById('quizList');
+    const noQuizzes = document.getElementById('noQuizzes');
+    quizList.innerHTML = '';
   
+    if (quizzes.length === 0) {
+      quizList.style.display = "none";
+      noQuizzes.style.display = "block";
+      return;
+    }
+    quizList.style.display = "grid";
+    noQuizzes.style.display = "none";
+  
+    quizzes.forEach((quiz, idx) => {
+      const card = document.createElement('div');
+      card.className = 'quiz-card';
+  
+      card.innerHTML = `
+        <div class="quiz-title-row">
+          <div class="quiz-title">${quiz.title}</div>
+          <div class="quiz-category">${quiz.category}</div>
+        </div>
+        <div class="quiz-meta">Created: ${quiz.created}</div>
+        <div class="quiz-meta">Attempts: ${quiz.attempts} | Best Score: ${quiz.bestScore !== null ? quiz.bestScore + "%" : "N/A"}</div>
+        <div class="quiz-progress-bar">
+          <div class="quiz-progress" style="width: ${quiz.progress}%"></div>
+        </div>
+        <div class="quiz-actions">
+          <button class="view-btn" onclick="viewQuiz(${quiz.id})">View</button>
+          <button class="edit-btn" onclick="editQuiz(${quiz.id})">Edit</button>
+          <button class="delete-btn" onclick="deleteQuiz(${quiz.id}, this)">Delete</button>
+        </div>
+      `;
+      quizList.appendChild(card);
+    });
+  }
   
