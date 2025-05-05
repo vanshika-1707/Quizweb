@@ -12,3 +12,13 @@ emojis.forEach(emoji => {
   });
 });
 
+// Form submission
+feedbackForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  if (!ratingInput.value) {
+    alert('Please select your satisfaction rating.');
+    return;
+  }
+  feedbackForm.style.display = 'none';
+  feedbackSuccess.style.display = 'block';
+});
