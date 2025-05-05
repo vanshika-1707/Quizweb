@@ -64,4 +64,25 @@ const quizzes = [
       quizList.appendChild(card);
     });
   }
+    // Button actions (demo)
+  function viewQuiz(id) {
+    alert("View Quiz ID: " + id);
+    // window.location.href = view-quiz.html?id=${id};
+  }
+  function editQuiz(id) {
+    alert("Edit Quiz ID: " + id);
+    // window.location.href = edit-quiz.html?id=${id};
+  }
+  function deleteQuiz(id, btn) {
+    if (confirm("Are you sure you want to delete this quiz?")) {
+      // Remove from quizzes array (in real app, send request to server)
+      const idx = quizzes.findIndex(q => q.id === id);
+      if (idx !== -1) quizzes.splice(idx, 1);
+      renderQuizzes();
+    }
+  }
   
+  // Render on page load
+  document.addEventListener('DOMContentLoaded', renderQuizzes);
+  
+
