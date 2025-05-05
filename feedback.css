@@ -42,4 +42,24 @@ body, html {
     color: #2d1457;
   }
   
- 
+  .subtitle {
+    margin-bottom: 22px;
+    color: #888;
+    font-size: 1em;
+  }
+  
+  .feedback-label {
+    display: block;
+    margin: 18px 0 8px 0;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .emoji-rating {
+    display: flex;
+    gap: 12px;
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+  
+  
