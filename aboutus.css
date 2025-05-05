@@ -49,3 +49,29 @@ body, html {
     color: #fff;
   }
   
+/* Hero Section */
+  .about-hero {
+    background: linear-gradient(120deg, #a18cd1 0%, #fbc2eb 100%), url('https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg');
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 60px 0 50px 0;
+    text-align: center;
+    box-shadow: 0 2px 18px rgba(124,58,237,0.10);
+  }
+  
+  .about-hero-content h1 {
+    font-size: 2.7em;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  
+  .about-hero-content p {
+    font-size: 1.25em;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  
+  
