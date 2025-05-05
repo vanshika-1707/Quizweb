@@ -18,4 +18,24 @@
           <div class="emoji-rating" id="emojiRating">
             <span class="emoji" data-value="1" title="Very Unsatisfied">&#128577;</span>
             <span class="emoji" data-value="2" title="Unsatisfied">&#128542;</span>
-            
+            <span class="emoji" data-value="3" title="Neutral">&#128528;</span>
+            <span class="emoji" data-value="4" title="Satisfied">&#128522;</span>
+            <span class="emoji" data-value="5" title="Very Satisfied">&#128525;</span>
+          </div>
+          <input type="hidden" name="rating" id="ratingInput" required>
+          <label for="feedback" class="feedback-label">Your Comments (optional)</label>
+          <textarea id="feedback" name="feedback" rows="3" placeholder="Share your thoughts..."></textarea>
+          <button type="submit" class="feedback-btn">Submit Feedback</button>
+        </form>
+        <div id="feedbackSuccess" class="feedback-success">
+          <i class="fa fa-check-circle"></i> Thank you for your feedback!
+        </div>
+      </div>
+      <div class="feedback-right">
+        <img src="./FEEDBACK.webp" alt="Feedback Illustration">
+      </div>
+    </div>
+  </div>
+  <script src="./feedback.js"></script>
+</body>
+</html>
