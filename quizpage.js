@@ -180,3 +180,123 @@ document.addEventListener('DOMContentLoaded', function() {
   
     // Select an option
    
+ function selectOption(questionIndex, optionIndex) {
+      userAnswers[questionIndex] = optionIndex;
+      
+      // Update UI
+      const options = optionsContainer.querySelectorAll('.option');
+      options.forEach(option => option.classList.remove('selected'));
+      options[optionIndex].classList.add('selected');
+    }
+  
+    // Go to previous question
+    function goToPreviousQuestion() {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        showQuestion(currentQuestionIndex);
+        updateProgressBar();
+      }
+    }
+  
+    // Go to next question
+    function goToNextQuestion() {
+      if (currentQuestionIndex < quizQuestions.length - 1) {
+        currentQuestionIndex++;
+        showQuestion(currentQuestionIndex);
+        updateProgressBar();
+      }
+    }
+  
+    // Update progress bar
+    function updateProgressBar() {
+      const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
+      progressBar.style.width = ${progress}%;
+    }
+  
+    // Update timer
+    function updateTimer() {
+      const now = new Date();
+      const elapsedTime = Math.floor((now - startTime) / 1000); // in seconds
+      
+      const minutes = Math.floor(elapsedTime / 60);
+      const seconds = elapsedTime % 60;
+      
+      timer.textContent = ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')};
+    }
+  
+    // Calculate score
+    function calculateScore() {
+      let score = 0;
+      
+      userAnswers.forEach((answer, index) => {
+        if (answer === quizQuestions[index].answer) {
+          score++;
+        }
+      });
+      
+      return score;
+    }
+  
+    // Submit quiz
+    function submitQuiz() {
+      clearInterval(timerInterval);
+      
+      const score = calculateScore();
+      scoreValue.textContent = score;
+      scoreMessage.textContent = You scored ${score} out of ${quizQuestions.length};
+      
+      // Generate review
+      generateReview();
+      
+      // Hide quiz, show results
+      quizContainer.style.display = 'none';
+      resultsContainer.style.display = 'block';
+    }
+  
+    // Generate review of all questions and answers
+    function generateReview() {
+      reviewContainer.innerHTML = '';
+      
+      quizQuestions.forEach((question, index) => {
+        const reviewItem = document.createElement('div');
+        reviewItem.classList.add('review-item');
+        
+        // Question
+        const reviewQuestion = document.createElement('div');
+        reviewQuestion.classList.add('review-question');
+        reviewQuestion.textContent = ${index + 1}. ${question.question};
+        reviewItem.appendChild(reviewQuestion);
+        
+        // Answers
+        question.options.forEach((option, i) => {
+          const reviewAnswer = document.createElement('div');
+          reviewAnswer.classList.add('review-answer');
+          
+          // Correct answer
+          if (i === question.answer) {
+            reviewAnswer.classList.add('correct');
+            reviewAnswer.textContent = ✓ ${option};
+          } 
+          // Incorrect selected answer
+          else if (i === userAnswers[index] && i !== question.answer) {
+            reviewAnswer.classList.add('incorrect');
+            reviewAnswer.textContent = ✗ ${option};
+          }
+          // Other options
+          else {
+            reviewAnswer.textContent = option;
+          }
+          
+          // Highlight user's selection
+          if (i === userAnswers[index]) {
+            reviewAnswer.classList.add('user-selected');
+          }
+          
+          reviewItem.appendChild(reviewAnswer);
+        });
+        
+        reviewContainer.appendChild(reviewItem);
+      });
+    }
+  
+    
