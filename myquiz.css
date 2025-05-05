@@ -1,0 +1,26 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f7f6fd;
+  }
+  
+  .main-bg {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+    padding-bottom: 40px;
+  }
+  
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 0 32px;
+    height: 66px;
+    box-shadow: 0 2px 12px rgba(80, 80, 160, 0.06);
+    border-radius: 0 0 14px 14px;
+    margin-bottom: 32px;
+  }
+  
+ 
